@@ -1,0 +1,23 @@
+
+
+<h2>User info</h2>
+<%= attachment_image_tag user, :profile_image, :fill, 100, 100, format: 'jpeg', fallback: "no_image.jpg" %>
+<div class="profile-container">
+<h3 class="profile-name">name <%= user.name %></h3>
+<h3 class="profile-name">introduction <%= user.introduction %>　</h3>
+</div>
+<%= link_to edit_user_path(@user) do %>
+<span class="fas fa-user-cog"></span>
+
+<% end %>
+
+
+<h2>New book</h2>
+<!-- form_with部分 -->
+<%= form_with model: new_book,  local:true do |f| %>
+  <h4>Title</h4>
+  <%= f.text_field :title %>
+  <h4>Opinion</h4>
+  <%= f.text_area :body %>
+  <%= f.submit 'Create Book' %>
+<% end %>

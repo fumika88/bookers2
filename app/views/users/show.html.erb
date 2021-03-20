@@ -1,0 +1,61 @@
+
+
+<div class="container">
+<div class="row">
+<div class="col-md-3">
+
+<h2>User info</h2>
+<%= attachment_image_tag @user, :profile_image, :fill, 100, 100, format: 'jpeg', fallback: "no_image.jpg" %>
+<div class="profile-container">
+<h3 class="profile-name">name <%= @user.name %></h3>
+<h3 class="profile-name">introduction <%= @user.introduction %>　</h3>
+</div>
+<%= link_to edit_user_path(@user) do %>
+<span class="fas fa-user-cog"></span>
+<% end %>
+
+
+
+<h2>New book</h2>
+<!-- form_with部分 -->
+<%= form_with model: @book,  local:true do |f| %>
+  <h4>Title</h4>
+  <%= f.text_field :title, :size=>"20" %>
+  <h4>Opinion</h4>
+  <p><%= f.text_area :body, :size=>"20" %></p>
+  <p><%= f.submit 'Create Book' %></p>
+<% end %>
+
+</div>
+
+
+<div class="col-md-8 offset-md-1">
+
+<h2>Books</h2>
+<p><% @books.each do |books| %></p>
+
+<table class="table table-striped">
+<thead>
+<tr>
+  <th></th>
+  <th>title</th>
+  <th>Opinion</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td><%= link_to user_path do %>
+    <%= attachment_image_tag @user, :profile_image, :fill, 100, 100, format: 'jpeg', fallback: "no_image.jpg" %>
+    <% end %></td>
+
+<td><%= link_to books.title, book_path(books) %></td>
+<td><%= books.body %></td>
+</tr>
+</tbody>
+</table>
+<% end %>
+
+</div>
+</div>
+</div>
